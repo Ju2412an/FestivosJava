@@ -61,12 +61,14 @@ public class FestivoServicio implements IFestivoServicio {
 
     private boolean isValidDate(int year, int month, int day) {
         try {
-            LocalDate.of(year, month, day);
+            // El valor devuelto por LocalDate.of se utiliza para la comparación con sí mismo
+            return LocalDate.of(year, month, day) != null;
         } catch (Exception e) {
             return false;
         }
-        return true;
     }
+    
+    
 
     private LocalDate domingoPascua(int anio) // Especificar el tipo de dato del parámetro
     {
