@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import api_festivos.api_festivos.core.dominio.Festivo;
@@ -23,7 +22,7 @@ public class FestivoControlador {
         this.servicio = servicio;
     }
 
-    @RequestMapping(value = "/verificar/{anio}/{mes}/{dia}", method = RequestMethod.GET)
+    @GetMapping("/verificar/{anio}/{mes}/{dia}")
     public String verificarFestivo(@PathVariable int anio, @PathVariable int mes, @PathVariable int dia) {
         try {
             boolean esFestivo = servicio.verificarFestivo(anio, mes, dia);
@@ -36,6 +35,7 @@ public class FestivoControlador {
             return e.getMessage(); // Devolver el mensaje de error si la fecha no es válida
         }
     }
+
 
     @GetMapping("/listar")
     public List<Festivo> listarFestivos() {
